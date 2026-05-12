@@ -1,4 +1,4 @@
-# 修論用のTypstのテンプレート
+# 修論用のTypstのテンプレートを学部のレポートにも使えるように改造
 ## vscodeでの使用
 - ![ti](https://github.com/user-attachments/assets/7ab2a6c3-a561-4a04-8a70-f3f83a471422) 拡張機能**Tynymist** ~~Typst LSP, Typst Previewなど~~をインストール
 
