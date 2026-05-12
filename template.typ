@@ -413,14 +413,17 @@
   school: "",
   department: "",
   id: "",
+  need-mentor: false,
   mentor: "",
   mentor-post: "",
-  class: "修士",
+  class: "学士",
+  need-date: true,
   date: (datetime.today().year(), datetime.today().month(), datetime.today().day()),
 
   paper-type: "論文",
 
   // Abstruct
+  need-abstruct: false,
   abstract_ja: [],
   abstract_en: [],
   keywords_ja: (),
@@ -567,17 +570,21 @@
       #id #author
     ]
 
-    #text(
-      size: 16pt,
-    )[
-      指導教員: #mentor #mentor-post
-    ]
+    #if(need-mentor){
+      text(
+        size: 16pt,
+      )[
+        指導教員: #mentor #mentor-post
+      ]
+    }
     #v(40pt)
-    #text(
-      size: 16pt,
-    )[
-      #date.at(0) 年 #date.at(1) 月 #date.at(2) 日 提出
-    ]
+    #if(need-date){
+      text(
+        size: 16pt,
+      )[
+        #date.at(0) 年 #date.at(1) 月 #date.at(2) 日 提出
+      ]
+    }
     #pagebreak()
   ]
 
@@ -587,8 +594,10 @@
 
   counter(page).update(1)
   // Show abstruct
-  abstract_page(abstract_ja, abstract_en, keywords_ja: keywords_ja, keywords_en: keywords_en)
-  pagebreak()
+  if(need-abstruct){
+    abstract_page(abstract_ja, abstract_en, keywords_ja: keywords_ja, keywords_en: keywords_en)
+    pagebreak()
+  }
 
   // Configure paragraph properties.
   set par(leading: 0.78em, first-line-indent: 12pt, justify: true)
