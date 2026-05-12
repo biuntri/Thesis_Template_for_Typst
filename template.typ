@@ -419,6 +419,9 @@
   class: "学士",
   need-date: true,
   date: (datetime.today().year(), datetime.today().month(), datetime.today().day()),
+  need-toc: false,
+  need-toc_img: false,
+  need-toc_tbl: false,
 
   paper-type: "論文",
 
@@ -435,6 +438,9 @@
   // The path to a bibliography file if you want to cite some external
   // works.
   bibliography-file: none,
+
+  //
+  pre_Chaptor-Style: none,
 
   // The paper's content.
   body,
@@ -612,13 +618,18 @@
     counter(math.equation).update(0)
     set text(weight: "bold", size: 20pt)
     set block(spacing: 1.5em)
+
+    let fn_pre_chapt = if (pre_Chaptor-Style == none) {
+      t => text()[
+        #v(50pt)
+        第
+        #t
+        章
+      ] 
+    } else { pre_Chaptor-Style }
+
     let pre_chapt = if it.numbering != none {
-          text()[
-            #v(50pt)
-            第
-            #numbering(it.numbering, ..counter(heading).at(it.location()))
-            章
-          ] 
+          fn_pre_chapt(numbering(it.numbering, ..counter(heading).at(it.location())))
         } else {none}
     text()[
       #pre_chapt \
@@ -640,11 +651,21 @@
 
 
   // Start with a chapter outline.
-  toc()
-  pagebreak()
-  toc_img()
-  pagebreak()
-  toc_tbl()
+  if need-toc {
+    toc()
+    if (need-toc_img or need-toc_tbl) {
+      pagebreak()
+    }
+  }
+  if need-toc_img {
+    toc_img()
+    if (need-toc_tbl) {
+      pagebreak()
+    }
+  }
+  if need-toc_tbl{
+    toc_tbl()
+  }
 
   set page(
     numbering: "1",
