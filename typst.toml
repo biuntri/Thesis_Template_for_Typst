@@ -1,0 +1,4 @@
+[package]
+name = "Thesis_Template_for_Typst"
+version = "1.0.0"
+entrypoint = "template.typ"
