@@ -442,6 +442,11 @@
   //
   pre_Chaptor-Style: none,
 
+  need-Second-page: true,
+
+  After_preChaptor_Gap: 50pt,
+  After_subChaptor_Gap: 50pt,
+
   // The paper's content.
   body,
 ) = {
@@ -591,7 +596,9 @@
         #date.at(0) 年 #date.at(1) 月 #date.at(2) 日 提出
       ]
     }
-    #pagebreak()
+    #if need-Second-page {
+      pagebreak()
+    }
   ]
 
   set page(
@@ -634,7 +641,7 @@
     text()[
       #pre_chapt \
       #it.body \
-      #v(50pt)
+      #v(After_preChaptor_Gap)
     ]
   }
   show heading.where(level: 2): it => {
