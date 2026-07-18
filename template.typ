@@ -439,8 +439,9 @@
   // works.
   bibliography-file: none,
 
-  //
+  // チャプター見出し関連
   pre_Chaptor-Style: none,
+  pre-Chapter-Pagebreake: true,
 
   need-Second-page: true,
 
@@ -621,7 +622,11 @@
     nums.pos().map(str).join(".") + " "
   })
   show heading.where(level: 1): it => {
-    pagebreak()
+    
+    if (pre-Chapter-Pagebreake){
+      pagebreak()
+    }
+
     counter(math.equation).update(0)
     set text(weight: "bold", size: 20pt)
     set block(spacing: 1.5em)
