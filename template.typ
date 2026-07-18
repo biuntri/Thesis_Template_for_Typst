@@ -621,33 +621,35 @@
   set heading(numbering: (..nums) => {
     nums.pos().map(str).join(".") + " "
   })
-  show heading.where(level: 1): it => block(width: 100%)[
-    #{
-      if (pre-Chapter-Pagebreake){
-        pagebreak()
-      }
-
-      counter(math.equation).update(0)
-      set text(weight: "bold", size: 20pt)
-      set block(spacing: 1.5em)
-
-      let fn_pre_chapt = if (pre_Chaptor-Style == none) {
-        t => text()[
-          #v(50pt)
-          第 #t 章 \
-        ] 
-      } else { pre_Chaptor-Style }
-
-      let pre_chapt = if it.numbering != none {
-            fn_pre_chapt(numbering(it.numbering, ..counter(heading).at(it.location())))
-          } else {none}
-      text()[
-        #pre_chapt 
-        #it.body \
-        #v(After_preChaptor_Gap)
-      ]
+  show heading.where(level: 1): it => {
+    if (pre-Chapter-Pagebreake) {
+      pagebreak()
     }
-  ]
+    block(width: 100%)[
+      #{
+        counter(math.equation).update(0)
+        set text(weight: "bold", size: 20pt)
+        set block(spacing: 1.5em)
+        
+        let fn_pre_chapt = if (pre_Chaptor-Style == none) {
+          t => text()[
+            #v(50pt)
+            第 #t 章 \
+          ]
+        } else { pre_Chaptor-Style }
+        
+        let pre_chapt = if it.numbering != none {
+          fn_pre_chapt(numbering(it.numbering, ..counter(heading).at(it.location())))
+        } else { none }
+        text()[
+          #pre_chapt
+          #it.body \
+          #v(After_preChaptor_Gap)
+        ]
+      }
+    ]
+
+  }
   show heading.where(level:2): it => {
     set text(weight: "bold", size: 16pt)
     set block(above: 1.5em, below: 1.5em)
