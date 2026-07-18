@@ -631,7 +631,7 @@
         #v(50pt)
         第
         #t
-        章
+        章 \
       ] 
     } else { pre_Chaptor-Style }
 
@@ -639,7 +639,7 @@
           fn_pre_chapt(numbering(it.numbering, ..counter(heading).at(it.location())))
         } else {none}
     text()[
-      #pre_chapt \
+      #pre_chapt 
       #it.body \
       #v(After_preChaptor_Gap)
     ]
