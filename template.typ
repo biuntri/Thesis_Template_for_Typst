@@ -411,6 +411,7 @@
   // The author's information
   university: "",
   school: "",
+  departmentWithAuther: false,
   department: "",
   id: "",
   need-mentor: false,
@@ -561,8 +562,15 @@
     #text(
       size: 16pt,
     )[
-      #university #school #department
+      #university
     ]
+    #if (not departmentWithAuther){
+      text(
+      size: 16pt,
+      )[
+        #school #department
+      ]
+    }
 
     #text(
       size: 16pt,
@@ -576,6 +584,15 @@
       #title
     ]
     #v(50pt)
+
+    #if (departmentWithAuther) {
+      text(
+        size: 16pt,
+      )[
+        #school #department
+      ]
+      linebreak()
+    }
     #text(
       size: 16pt,
     )[
