@@ -443,6 +443,7 @@
   // チャプター見出し関連
   pre_Chaptor-Style: none,
   pre-Chapter-Pagebreake: true,
+  Chapter-Count: ("章", "節", "項"),
 
   need-Second-page: true,
 
@@ -492,14 +493,17 @@
       let loc = el.location()
       let num = numbering(el.numbering, ..counter(heading).at(loc))
       if el.level == 1 {
+        "第"
         str(num)
-        "章"
+        Chapter-Count.first()
       } else if el.level == 2 {
+        "第"
         str(num)
-        "節"
+        Chapter-Count.at(2)
       } else if el.level == 3 {
+        "第"
         str(num)
-        "項"
+        Chapter-Count.at(3)
       }
     } else {
       it
@@ -651,7 +655,7 @@
         let fn_pre_chapt = if (pre_Chaptor-Style == none) {
           t => text()[
             #v(50pt)
-            第 #t 章 \
+            第 #t #Chapter-Count.first() \
           ]
         } else { pre_Chaptor-Style }
         
