@@ -447,8 +447,10 @@
 
   need-Second-page: true,
 
+  Before_preChaptor_Gap: 50pt,
   After_preChaptor_Gap: 50pt,
-  After_subChaptor_Gap: 50pt,
+  // Before_subChaptor_Gap: 50pt,
+  // After_subChaptor_Gap: 50pt,
 
   // The paper's content.
   body,
@@ -654,7 +656,7 @@
         
         let fn_pre_chapt = if (pre_Chaptor-Style == none) {
           t => text()[
-            #v(50pt)
+            #v(Before_preChaptor_Gap)
             第 #t #Chapter-Count.first() \
           ]
         } else { pre_Chaptor-Style }
