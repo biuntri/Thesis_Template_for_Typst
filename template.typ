@@ -448,7 +448,7 @@
   need-Second-page: true,
 
   Before_preChaptor_Gap: 50pt,
-  After_preChaptor_Gap: 50pt,
+  After_preChaptor_Gap: 20pt,
   // Before_subChaptor_Gap: 50pt,
   // After_subChaptor_Gap: 50pt,
 
@@ -664,9 +664,9 @@
           fn_pre_chapt(numbering(it.numbering, ..counter(heading).at(it.location())))
         } else { none }
         text()[
+          #v(Before_preChaptor_Gap)
           #pre_chapt
           #it.body \
-          #v(Before_preChaptor_Gap)
           #v(After_preChaptor_Gap)
         ]
       }
