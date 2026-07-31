@@ -494,18 +494,10 @@
       let el = it.element
       let loc = el.location()
       let num = numbering(el.numbering, ..counter(heading).at(loc))
-      if el.level == 1 {
+      if el.level <= Chapter-Count.len() {
         "第"
         str(num)
-        Chapter-Count.first()
-      } else if el.level == 2 {
-        "第"
-        str(num)
-        Chapter-Count.at(2)
-      } else if el.level == 3 {
-        "第"
-        str(num)
-        Chapter-Count.at(3)
+        Chapter-Count.at(el.level)
       }
     } else {
       it
